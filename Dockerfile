@@ -1,9 +1,13 @@
 FROM ubuntu:latest
 
-RUN apt-get update && apt-get install -y snapd curl jq git && rm -rf /var/lib/apt/lists/*
-RUN snap install yq
+RUN apt-get update && apt-get install -y curl jq git && rm -rf /var/lib/apt/lists/*
 
 # Install some devops tools:
+
+# yq
+RUN wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 \
+    && chmod +x /usr/bin/yq \
+    && yq --version
 
 # kubectl
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
