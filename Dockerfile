@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-RUN apt-get update && apt-get install -y curl jq git && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y curl wget jq git && rm -rf /var/lib/apt/lists/*
 
 # Install some devops tools:
 
