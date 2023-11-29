@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y curl wget jq git && rm -rf /var/lib/apt
 
 # yq
 RUN wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 \
-    && chmod +x /usr/bin/yq \
+    && chmod +x /usr/local/bin/yq \
     && yq --version
 
 # kubectl
