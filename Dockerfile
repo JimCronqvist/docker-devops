@@ -3,7 +3,7 @@ FROM ubuntu:latest
 RUN apt-get update && apt-get install -y curl wget jq git gnupg unzip && rm -rf /var/lib/apt/lists/*
 
 # Install some network troubleshooting tools:
-RUN apt-get update && apt-get install -y iputils-ping wget curl iproute2 net-tools htop netcat telnet vim traceroute dnsutils && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y iputils-ping wget curl iproute2 net-tools htop netcat-traditional telnet vim traceroute dnsutils && rm -rf /var/lib/apt/lists/*
 
 # Install some devops tools:
 
@@ -51,4 +51,6 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
     && ./aws/install
 
 # Clone all scripts in ubuntu-scripts, for easy access just in case.
-ADD git@github.com:JimCronqvist/ubuntu-scripts.git#master ~/ubuntu-scripts
+ADD https://api.github.com/repos/JimCronqvist/ubuntu-scripts/compare/master...HEAD /dev/null
+RUN git clone https://github.com/JimCronqvist/ubuntu-scripts /ubuntu-scripts
+RUN chmod +x /ubuntu-scripts/*.sh
