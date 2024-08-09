@@ -1,9 +1,16 @@
 FROM ubuntu:latest
 
+# Set the default shell to bash
+SHELL ["/bin/bash", "-c"]
+
+# Install some base tools
 RUN apt-get update && apt-get install -y curl wget jq git gnupg unzip && rm -rf /var/lib/apt/lists/*
 
 # Install some network troubleshooting tools:
 RUN apt-get update && apt-get install -y iputils-ping wget curl iproute2 net-tools htop netcat-traditional telnet vim traceroute dnsutils && rm -rf /var/lib/apt/lists/*
+
+# Install some dependencies for mydumper
+RUN apt-get update && apt-get install -y pv lsb-release zstd mysql-client libatomic1 libglib2.0-0 libpcre3 && rm -rf /var/lib/apt/lists/*
 
 # Install some devops tools:
 
@@ -49,6 +56,13 @@ RUN curl https://baltocdn.com/helm/signing.asc | apt-key add - \
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
     && unzip awscliv2.zip \
     && ./aws/install
+
+# mydumper
+RUN MYDUMPER_VERSION="$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/mydumper/mydumper/releases/latest | cut -d'/' -f8)" \
+    && wget "https://github.com/mydumper/mydumper/releases/download/${MYDUMPER_VERSION}/mydumper_${MYDUMPER_VERSION:1}.$(lsb_release -cs)_amd64.deb" \
+    && dpkg -i "mydumper_${MYDUMPER_VERSION:1}.$(lsb_release -cs)_amd64.deb" \
+    && rm -f "mydumper_${MYDUMPER_VERSION:1}.$(lsb_release -cs)_amd64.deb" \
+    && mydumper --version
 
 # Clone all scripts in ubuntu-scripts, for easy access just in case.
 ADD https://api.github.com/repos/JimCronqvist/ubuntu-scripts/compare/master...HEAD /dev/null
