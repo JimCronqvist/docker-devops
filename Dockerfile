@@ -49,3 +49,6 @@ RUN curl https://baltocdn.com/helm/signing.asc | apt-key add - \
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
     && unzip awscliv2.zip \
     && ./aws/install
+
+# Clone all scripts in ubuntu-scripts, for easy access just in case.
+ADD git@github.com/JimCronqvist/ubuntu-scripts.git#master ~/ubuntu-scripts
