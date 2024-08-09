@@ -51,4 +51,4 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
     && ./aws/install
 
 # Clone all scripts in ubuntu-scripts, for easy access just in case.
-ADD git@github.com/JimCronqvist/ubuntu-scripts.git#master ~/ubuntu-scripts
+ADD git@github.com:JimCronqvist/ubuntu-scripts.git#master ~/ubuntu-scripts
