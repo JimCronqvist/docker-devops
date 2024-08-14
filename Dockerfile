@@ -12,6 +12,9 @@ RUN apt-get update && apt-get install -y iputils-ping wget curl iproute2 net-too
 # Install some dependencies for mydumper
 RUN apt-get update && apt-get install -y pv lsb-release gettext-base zstd mysql-client libatomic1 libglib2.0-0 libpcre3 && rm -rf /var/lib/apt/lists/*
 
+# Install some other tools via apt-get
+RUN apt-get update && apt-get install -y redis-tools postgresql-client && rm -rf /var/lib/apt/lists/*
+
 # Install some devops tools:
 
 # yq
