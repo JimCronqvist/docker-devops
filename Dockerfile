@@ -71,3 +71,6 @@ RUN MYDUMPER_VERSION="$(curl -Ls -o /dev/null -w %{url_effective} https://github
 ADD https://api.github.com/repos/JimCronqvist/ubuntu-scripts/compare/master...HEAD /dev/null
 RUN git clone https://github.com/JimCronqvist/ubuntu-scripts /ubuntu-scripts
 RUN chmod +x /ubuntu-scripts/*.sh
+
+# Set the working directory to the home folder
+WORKDIR /root
