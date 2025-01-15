@@ -12,3 +12,4 @@ This container contains a number of tools typically used in devops environments.
 - argocd
 - helm
 - aws cli
+- mydumper/myloader/mysql
