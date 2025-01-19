@@ -6,6 +6,9 @@ SHELL ["/bin/bash", "-c"]
 # Install some base tools
 RUN apt-get update && apt-get install -y curl wget jq git gnupg unzip && rm -rf /var/lib/apt/lists/*
 
+# Install some basic troubleshooting tools:
+RUN apt-get update && apt-get install -y sysstat && rm -rf /var/lib/apt/lists/*
+
 # Install some network troubleshooting tools:
 RUN apt-get update && apt-get install -y iputils-ping wget curl iproute2 net-tools htop netcat-traditional telnet vim traceroute dnsutils && rm -rf /var/lib/apt/lists/*
 
