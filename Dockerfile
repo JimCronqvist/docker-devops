@@ -73,8 +73,8 @@ RUN MYDUMPER_VERSION="$(curl -Ls -o /dev/null -w %{url_effective} https://github
 # node
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
     && apt-get install -y nodejs \
-    && npm install -g npm@latest
-    && npm install -g yarn@latest
+    && npm install -g npm@latest \
+    && npm install -g yarn@latest \
     && node -v
 
 # Clone all scripts in ubuntu-scripts, for easy access just in case.
