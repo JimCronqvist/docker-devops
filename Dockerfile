@@ -70,6 +70,11 @@ RUN MYDUMPER_VERSION="$(curl -Ls -o /dev/null -w %{url_effective} https://github
     && rm -f "mydumper_${MYDUMPER_VERSION:1}.$(lsb_release -cs)_amd64.deb" \
     && mydumper --version
 
+# node
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash \
+    && nvm install 22 \
+    && node -v
+
 # Clone all scripts in ubuntu-scripts, for easy access just in case.
 ADD https://api.github.com/repos/JimCronqvist/ubuntu-scripts/compare/master...HEAD /dev/null
 RUN git clone https://github.com/JimCronqvist/ubuntu-scripts /ubuntu-scripts
