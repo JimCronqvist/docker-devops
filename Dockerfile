@@ -71,7 +71,7 @@ RUN MYDUMPER_VERSION="$(curl -Ls -o /dev/null -w %{url_effective} https://github
     && mydumper --version
 
 # node
-RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
     && apt-get install -y nodejs \
     && npm install -g npm@latest \
     && npm install -g yarn@latest \
