@@ -71,10 +71,10 @@ RUN MYDUMPER_VERSION="$(curl -Ls -o /dev/null -w %{url_effective} https://github
     && mydumper --version
 
 # node
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash \
-    && export NVM_DIR="$HOME/.nvm" \
-    && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" \
-    && nvm install 22 \
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
+    && apt-get install -y nodejs \
+    && npm install -g npm@latest
+    && npm install -g yarn@latest
     && node -v
 
 # Clone all scripts in ubuntu-scripts, for easy access just in case.
