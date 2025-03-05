@@ -79,8 +79,8 @@ RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
 
 # Clone all scripts in ubuntu-scripts, for easy access just in case.
 ADD https://api.github.com/repos/JimCronqvist/ubuntu-scripts/compare/master...HEAD /dev/null
-RUN git clone https://github.com/JimCronqvist/ubuntu-scripts /ubuntu-scripts
-RUN chmod +x /ubuntu-scripts/*.sh
+RUN git clone https://github.com/JimCronqvist/ubuntu-scripts /scripts
+RUN chmod +x /scripts/*.sh
 
 # Set the working directory to the home folder
 WORKDIR /root
