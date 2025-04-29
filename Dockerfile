@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y curl wget jq git gnupg unzip whiptail b
 RUN apt-get update && apt-get install -y sysstat && rm -rf /var/lib/apt/lists/*
 
 # Install some network troubleshooting tools:
-RUN apt-get update && apt-get install -y iputils-ping wget curl iproute2 net-tools htop netcat-traditional telnet vim traceroute dnsutils && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y iputils-ping wget curl iproute2 net-tools htop netcat-traditional telnet vim traceroute dnsutils tcpdump conntrack && rm -rf /var/lib/apt/lists/*
 
 # Install some dependencies for mydumper
 RUN apt-get update && apt-get install -y pv lsb-release gettext-base zstd mysql-client libatomic1 libglib2.0-0 libpcre3 && rm -rf /var/lib/apt/lists/*
