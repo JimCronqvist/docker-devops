@@ -4,7 +4,7 @@ FROM ubuntu:latest
 SHELL ["/bin/bash", "-c"]
 
 # Install some base tools
-RUN apt-get update && apt-get install -y curl wget jq git gnupg unzip whiptail bc bsdmainutils && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y curl wget jq git gnupg unzip whiptail bc bsdmainutils apache2-utils && rm -rf /var/lib/apt/lists/*
 
 # Install some basic troubleshooting tools:
 RUN apt-get update && apt-get install -y sysstat && rm -rf /var/lib/apt/lists/*
