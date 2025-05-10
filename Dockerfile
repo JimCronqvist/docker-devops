@@ -33,6 +33,15 @@ RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/s
     && rm kubectl \
     && kubectl version --client
 
+# cilium cli
+RUN CILIUM_CLI_VERSION=$(curl -s https://raw.githubusercontent.com/cilium/cilium-cli/main/stable.txt) \
+    && CLI_ARCH=$(uname -m | grep -q aarch64 && echo arm64 || echo amd64) \
+    && curl -L --fail --remote-name-all https://github.com/cilium/cilium-cli/releases/download/${CILIUM_CLI_VERSION}/cilium-linux-${CLI_ARCH}.tar.gz{,.sha256sum} \
+    && sha256sum --check cilium-linux-${CLI_ARCH}.tar.gz.sha256sum \
+    && tar xzvfC cilium-linux-${CLI_ARCH}.tar.gz /usr/local/bin \
+    && rm cilium-linux-${CLI_ARCH}.tar.gz{,.sha256sum} \
+    && cilium version --client
+
 # eksctl
 RUN curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp \
     && mv /tmp/eksctl /usr/local/bin \
