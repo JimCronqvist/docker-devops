@@ -82,6 +82,11 @@ RUN apt update \
     && adduser ubuntu docker \
     && rm -rf /var/lib/apt/lists/*
 
+# tailscale
+RUN curl -fsSL https://tailscale.com/install.sh | sh \
+    && rm -rf /var/lib/apt/lists/*
+    && tailscale version
+
 # mydumper - WARNING !!! - OVERRIDEN HARDCODED VERSION AS THE NEWER VERSION "v0.18.1-1" IS BROKEN FOR RDS FOR NOW.
 RUN MYDUMPER_VERSION="$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/mydumper/mydumper/releases/latest | cut -d'/' -f8)" \
     && MYDUMPER_VERSION="v0.17.1-1" \
