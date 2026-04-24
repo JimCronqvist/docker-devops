@@ -84,7 +84,7 @@ RUN apt update \
 
 # tailscale
 RUN curl -fsSL https://tailscale.com/install.sh | sh \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
     && tailscale version
 
 # mydumper - WARNING !!! - OVERRIDEN HARDCODED VERSION AS THE NEWER VERSION "v0.18.1-1" IS BROKEN FOR RDS FOR NOW.
