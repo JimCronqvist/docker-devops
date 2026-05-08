@@ -3,6 +3,9 @@ FROM ubuntu:latest
 # Set the default shell to bash
 SHELL ["/bin/bash", "-c"]
 
+# Add the universe repo
+RUN apt-get update && apt-get install -y --no-install-recommends software-properties-common && add-apt-repository universe && rm -rf /var/lib/apt/lists/*
+
 # Install some base tools
 RUN apt-get update && apt-get install -y curl wget jq git gnupg unzip whiptail bc bsdmainutils apache2-utils && rm -rf /var/lib/apt/lists/*
 
