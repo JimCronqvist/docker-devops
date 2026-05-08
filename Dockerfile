@@ -4,7 +4,7 @@ FROM ubuntu:latest
 SHELL ["/bin/bash", "-c"]
 
 # Add the universe repo
-RUN apt-get update && apt-get install -y --no-install-recommends software-properties-common && add-apt-repository universe && rm -rf /var/lib/apt/lists/*
+#RUN apt-get update && apt-get install -y --no-install-recommends software-properties-common && add-apt-repository universe && rm -rf /var/lib/apt/lists/*
 
 # Install some base tools
 RUN apt-get update && apt-get install -y curl wget jq git gnupg unzip whiptail bc bsdmainutils apache2-utils && rm -rf /var/lib/apt/lists/*
@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y sysstat && rm -rf /var/lib/apt/lists/*
 RUN apt-get update && apt-get install -y iputils-ping wget curl iproute2 net-tools htop netcat-traditional telnet vim traceroute dnsutils tcpdump conntrack && rm -rf /var/lib/apt/lists/*
 
 # Install some dependencies for mydumper
-RUN apt-get update && apt-get install -y pv lsb-release gettext-base zstd mysql-client libatomic1 libglib2.0-0 libpcre3 && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y pv lsb-release gettext-base zstd mysql-client libatomic1 libglib2.0-0 libpcre2-8-0 && rm -rf /var/lib/apt/lists/*
 
 # Install some other tools via apt-get
 RUN apt-get update && apt-get install -y redis-tools postgresql-client && rm -rf /var/lib/apt/lists/*
