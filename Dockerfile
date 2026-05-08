@@ -89,7 +89,7 @@ RUN curl -fsSL https://tailscale.com/install.sh | sh \
 
 # mydumper - WARNING !!! - OVERRIDEN HARDCODED VERSION AS THE NEWER VERSION "v0.18.1-1" IS BROKEN FOR RDS FOR NOW.
 RUN MYDUMPER_VERSION="$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/mydumper/mydumper/releases/latest | cut -d'/' -f8)" \
-    && MYDUMPER_VERSION="v0.17.1-1" \
+    && MYDUMPER_VERSION="v1.0.0-1" \
     && wget "https://github.com/mydumper/mydumper/releases/download/${MYDUMPER_VERSION}/mydumper_${MYDUMPER_VERSION:1}.$(lsb_release -cs)_amd64.deb" \
     && dpkg -i "mydumper_${MYDUMPER_VERSION:1}.$(lsb_release -cs)_amd64.deb" \
     && rm -f "mydumper_${MYDUMPER_VERSION:1}.$(lsb_release -cs)_amd64.deb" \
