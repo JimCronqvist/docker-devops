@@ -1,4 +1,5 @@
-FROM ubuntu:latest
+# Note 26.04 not supported by mydumper yet
+FROM ubuntu:24.04
 
 # Set the default shell to bash
 SHELL ["/bin/bash", "-c"]
@@ -90,7 +91,7 @@ RUN curl -fsSL https://tailscale.com/install.sh | sh \
     && rm -rf /var/lib/apt/lists/* \
     && tailscale version
 
-# mydumper - WARNING !!! - OVERRIDEN HARDCODED VERSION AS THE NEWER VERSION "v0.18.1-1" IS BROKEN FOR RDS FOR NOW.
+# mydumper - WARNING !!! - OVERRIDEN HARDCODED VERSION TEMPORARILY
 RUN MYDUMPER_VERSION="$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/mydumper/mydumper/releases/latest | cut -d'/' -f8)" \
     && MYDUMPER_VERSION="v1.0.0-1" \
     && wget "https://github.com/mydumper/mydumper/releases/download/${MYDUMPER_VERSION}/mydumper_${MYDUMPER_VERSION:1}.$(lsb_release -cs)_amd64.deb" \
