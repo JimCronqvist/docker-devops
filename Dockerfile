@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y sysstat && rm -rf /var/lib/apt/lists/*
 RUN apt-get update && apt-get install -y iputils-ping wget curl iproute2 net-tools htop netcat-traditional telnet vim traceroute dnsutils tcpdump conntrack && rm -rf /var/lib/apt/lists/*
 
 # Install some dependencies for mydumper
-RUN apt-get update && apt-get install -y pv lsb-release gettext-base zstd mysql-client libatomic1 libglib2.0-0 libpcre2-8-0 && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y pv lsb-release gettext-base zstd mysql-client libatomic1 libglib2.0-0 libpcre3 && rm -rf /var/lib/apt/lists/*
 
 # Install some other tools via apt-get
 RUN apt-get update && apt-get install -y redis-tools postgresql-client && rm -rf /var/lib/apt/lists/*
@@ -93,7 +93,7 @@ RUN curl -fsSL https://tailscale.com/install.sh | sh \
 
 # mydumper - WARNING !!! - OVERRIDEN HARDCODED VERSION TEMPORARILY
 RUN MYDUMPER_VERSION="$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/mydumper/mydumper/releases/latest | cut -d'/' -f8)" \
-    && MYDUMPER_VERSION="v1.0.0-1" \
+    && MYDUMPER_VERSION="v0.17.1-1" \
     && wget "https://github.com/mydumper/mydumper/releases/download/${MYDUMPER_VERSION}/mydumper_${MYDUMPER_VERSION:1}.$(lsb_release -cs)_amd64.deb" \
     && dpkg -i "mydumper_${MYDUMPER_VERSION:1}.$(lsb_release -cs)_amd64.deb" \
     && rm -f "mydumper_${MYDUMPER_VERSION:1}.$(lsb_release -cs)_amd64.deb" \
